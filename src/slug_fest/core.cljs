@@ -681,7 +681,6 @@ see: http://threejs.org/docs/#Reference/Materials/MeshLambertMaterial"
     )
   )
 
-
 (defn initial-loop
   "Initial loop that waits for user input in order to begin the game. This loop should be callled
 with request-animation-frame-wrapper so that current-time and previous-time will be given proper values. current-time is provided by requstAnimationFrame"

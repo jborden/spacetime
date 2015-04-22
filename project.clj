@@ -45,7 +45,6 @@
                         :compiler {
                                    :main slug-fest.core
                                    :output-to "out-adv/slug_fest.min.js"
-                                   :output-dir "out-adv"
                                    :optimizations :advanced
                                    :foreign-libs [{:file "resources/js/three.js"
                                                         :provides ["three"]}

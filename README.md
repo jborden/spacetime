@@ -9,6 +9,7 @@ Demo http://slugfest.cagostech.com
 
 ## License
 
-James Borden Copyright © 2015 FIXME
+James Borden Copyright © 2015 
 
-All Rights Reserved
+You may use the game code as you wish, however, please do not use any game assets without permission!
+
