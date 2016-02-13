@@ -5,7 +5,8 @@
             [detector]
             [stats]
             [dat]
-            ))
+            [weasel.repl :as repl]))
+
 
 ;; global variables
 (def request-id)
@@ -750,18 +751,18 @@ with request-animation-frame-wrapper so that current-time and previous-time will
       
       ;; refresh the loop
       (cond
-        (empty? alive-shroom-pool) ;; shrooms are all dead!
-        (do
-          (set! (.-material.opacity game-over-text) 1)
-          (js/cancelAnimationFrame request-id)
-          (set! request-id (request-animation-frame-wrapper game-over nil))
-          )
-        (empty? alive-slug-pool) ;; slugs are all dead!
-        (do
-          (set! (.-material.opacity you-win-text) 1)
-          (js/cancelAnimationFrame request-id)
-          (set! request-id (request-animation-frame-wrapper game-over nil))
-          )
+        ;; (empty? alive-shroom-pool) ;; shrooms are all dead!
+        ;; (do
+        ;;   (set! (.-material.opacity game-over-text) 1)
+        ;;   (js/cancelAnimationFrame request-id)
+        ;;   (set! request-id (request-animation-frame-wrapper game-over nil))
+        ;;   )
+        ;; (empty? alive-slug-pool) ;; slugs are all dead!
+        ;; (do
+        ;;   (set! (.-material.opacity you-win-text) 1)
+        ;;   (js/cancelAnimationFrame request-id)
+        ;;   (set! request-id (request-animation-frame-wrapper game-over nil))
+        ;;   )
         :else
         (set! request-id (request-animation-frame-wrapper initial-loop current-time))
         )))
@@ -801,3 +802,5 @@ with request-animation-frame-wrapper so that current-time and previous-time will
 
 
 
+(when-not (repl/alive?)
+  (repl/connect "ws://127.0.0.1:9001"))

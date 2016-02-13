@@ -2,12 +2,14 @@
   :description "Slug Fest Game for Ludum Dare 32"
   :url "http://slugfest.cagostech.com"
 
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-3126"]]
+  :dependencies [[org.clojure/clojure "1.7.0"]
+                 [com.cemerick/piggieback "0.2.1"]
+                 [weasel "0.7.0" :exclusions [org.clojure/clojurescript]]
+                 [org.clojure/clojurescript "1.7.228"]]
 
-  :node-dependencies [[source-map-support "0.2.8"]]
+  :node-dependencies [[source-map-support "0.3.2"]]
 
-  :plugins [[lein-cljsbuild "1.0.4"]
+  :plugins [[lein-cljsbuild "1.1.2"]
             [lein-externs "0.1.3"]]
 
   :source-paths ["src" "target/classes"]
@@ -62,4 +64,5 @@
                                                        ;;  :provides ["orbit-controls"]}
                                                        ]
                                    :externs ["resources/js/externs.js"]
-                                   :pretty-print false}}]})
+                                   :pretty-print false}}]}
+  :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]})
