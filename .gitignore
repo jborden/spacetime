@@ -17,3 +17,5 @@ node_modules/
 *~
 .nrepl-port
 profiles.clj
+resources/js/.nrepl-history
+out-adv/slug_fest.min.js

@@ -1,4 +1,4 @@
-(ns slug-fest.controls
+(ns slug-fest.controls.original
   (:require [slug-fest.camera :refer [change-position!]]))
 
 (def key-state (js-obj)) ; the state of keys
@@ -44,19 +44,20 @@
   (if (or (aget key-state left-arrow)
           (aget key-state a-key))
     ;;(.move-left hero ground)
-    (change-position! camera [-20 0 0]))
+    (change-position! camera [-40 0 0]))
   ;; hero move up
   (if (or (aget key-state up-arrow)
           (aget key-state w-key))
     ;;(.move-up hero ground)
-    (change-position! camera [0 0 -20]))
+    (change-position! camera [0 0 -40]))
   ;; hero move right
   (if (or (aget key-state right-arrow)
           (aget key-state d-key))
     ;;(.move-right hero ground)
-    (change-position! camera [20 0 0]))
+    (change-position! camera [40 0 0]))
   ;; hero move down
   (if (or (aget key-state down-arrow)
           (aget key-state s-key))
     ;;(.move-down hero ground)
-    (change-position! camera [0 0 20])))
+    (do
+      (change-position! camera [0 0 40]))))
