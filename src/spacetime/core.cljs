@@ -1,4 +1,4 @@
-(ns slug-fest.core
+(ns spacetime.core
   (:require [three]
             [fullscreen]
             [window-resize]
@@ -6,11 +6,11 @@
             [stats]
             [dat]
             [pointer-lock-controls]
-            [slug-fest.camera :refer [change-position!
+            [spacetime.camera :refer [change-position!
                                       create-perspective-camera init-camera!]]
-            [slug-fest.controls.original :as controls]
-            [slug-fest.entities :refer [hero shroom slug]]
-            [slug-fest.utilities :refer [x-min x-max y-min y-max
+            [spacetime.controls.original :as controls]
+            [spacetime.entities :refer [hero shroom slug]]
+            [spacetime.utilities :refer [x-min x-max y-min y-max
                                          find-nearest-object]]
             [weasel.repl :as repl]))
 
@@ -59,29 +59,6 @@
 
 (deftype Text [texture geometry material mesh])
 
-;; (def game-over-text
-;;   (let [texture (js/THREE.ImageUtils.loadTexture.
-;;                  "resources/images/gameover.gif")
-;;         geometry (js/THREE.PlaneGeometry. 1000 219 1 1)
-;;         material (js/THREE.MeshBasicMaterial.
-;;                   (js-obj "map" texture "side" js/THREE.DoubleSide
-;;                           "transparent" true))
-;;         mesh     (js/THREE.Mesh. geometry material)]
-;;     (set! (.-position.z mesh) 10)
-;;     (set! (.-opacity material) 0)
-;;     (Text. texture geometry material mesh)))
-
-;; (def you-win-text
-;;   (let [texture (js/THREE.ImageUtils.loadTexture. "resources/images/youwin.gif")
-;;         geometry (js/THREE.PlaneGeometry. 1000 219 1 1)
-;;         material (js/THREE.MeshBasicMaterial. (js-obj "map" texture "side"
-;;                                                       js/THREE.DoubleSide
-;;                                                       "transparent" true))
-;;         mesh     (js/THREE.Mesh. geometry material)]
-;;     (set! (.-position.z mesh) 10)
-;;     (set! (.-opacity material) 0)
-;;     (Text. texture geometry material mesh)))
-
 (deftype Ground [texture geometry material mesh])
 
 (def ground
@@ -97,95 +74,6 @@
     (.repeat.set texture 10 10)
     ;;(.rotateX geometry (/ (- js/Math.PI) 2))
     (Ground. texture geometry material mesh)))
-
-;; (defn reset-shroom-pool!
-;;   "Reset the shroom pool"
-;;   [shroom-pool]
-;;   (let [first-shroom (nth shroom-pool 0)
-;;         second-shroom (nth shroom-pool 1)
-;;         third-shroom  (nth shroom-pool 2)
-;;         fourth-shroom (nth shroom-pool 3)
-;;         fifth-shroom (nth shroom-pool 4)]
-;;     ;; first shroom
-;;     (set! (.-mesh.position.x first-shroom)
-;;           (+ (x-min first-shroom ground) 300))
-;;     (set! (.-mesh.position.y first-shroom)
-;;           (- (y-max first-shroom ground) 300))
-;;     ;; second shroom
-;;     (set! (.-mesh.position.x second-shroom)
-;;           (- (x-max second-shroom ground) 300))
-;;     (set! (.-mesh.position.y second-shroom)
-;;           (- (y-max second-shroom ground) 300))
-;;     ;; third shroom
-;;     (set! (.-mesh.position.x third-shroom)
-;;           (+ (x-min third-shroom ground) 300))
-;;     (set! (.-mesh.position.y third-shroom)
-;;           (+ (y-min third-shroom ground) 300))
-;;     ;; fourth shroom
-;;     (set! (.-mesh.position.x fourth-shroom)
-;;           (- (x-max fourth-shroom ground) 300))
-;;     (set! (.-mesh.position.y fourth-shroom)
-;;           (+ (y-min fourth-shroom ground) 300))
-;;     ;; fifth shroom
-;;     (set! (.-mesh.position.x fifth-shroom) 0)
-;;     (set! (.-mesh.position.y fifth-shroom) 0)
-;;     (doall (map
-;;             (fn [shroom] (do
-;;                            (set! (.-material.opacity shroom) 1)
-;;                            (set! (.-dead? shroom) false)
-;;                            (set! (.-bite-time shroom) 0)))
-;;             shroom-pool))
-;;     shroom-pool))
-
-;; (defn create-shroom-pool
-;;   "Create a shroom pool"
-;;   []
-;;   (let [pool (repeatedly 5 #(shroom))]
-;;     (reset-shroom-pool! pool)))
-
-;; (def shroom-pool)
-
-;; (defn reset-slug-pool!
-;;   "Reset the slug pool"
-;;   [slug-pool]
-;;   (let [first-slug (nth slug-pool 0)
-;;         second-slug (nth slug-pool 1)
-;;         third-slug  (nth slug-pool 2)
-;;         fourth-slug (nth slug-pool 3)
-;;         fifth-slug (nth slug-pool 4)]
-;;     ;; first slug
-;;     (set! (.-mesh.position.x first-slug) (x-min first-slug ground))
-;;     (set! (.-mesh.position.y first-slug) (y-max first-slug ground))
-;;     ;; second slug
-;;     (set! (.-mesh.position.x second-slug) (x-max second-slug ground))
-;;     (set! (.-mesh.position.y second-slug) (y-max second-slug ground))
-;;     ;; third slug
-;;     (set! (.-mesh.position.x third-slug) (x-min third-slug ground))
-;;     (set! (.-mesh.position.y third-slug) (y-min third-slug ground))
-;;     ;; fourth slug
-;;     (set! (.-mesh.position.x fourth-slug) (x-max fourth-slug ground))
-;;     (set! (.-mesh.position.y fourth-slug) (y-min fourth-slug ground))
-;;     ;; fifth slug
-;;     (set! (.-mesh.position.x fifth-slug) (+  (x-max fifth-slug ground) 100))
-;;     (set! (.-mesh.position.y fifth-slug) (+ (y-min fifth-slug ground) 100))
-;;     (doall (map (fn [slug] (do (set! (.-dead? slug) false)
-;;                                (set! (.-salt-time slug) 0)
-;;                                (set! (.-material.opacity slug) 1)
-;;                                )) slug-pool))
-;;     slug-pool))
-
-;; (defn create-slug-pool
-;;   "Create a slug pool"
-;;   []
-;;   (let [pool (repeatedly 5 #(slug))
-;;         first-slug (nth pool 0)
-;;         second-slug (nth pool 1)
-;;         third-slug  (nth pool 2)
-;;         fourth-slug (nth pool 3)
-;;         fifth-slug (nth pool 4)]
-;;     (reset-slug-pool! pool)))
-
-;; (def slug-pool)
 
 (defn create-webgl-renderer
   "Create a THREE.WebGLRenderer with js-obj parameters.
@@ -222,13 +110,8 @@
                            ;; we should stub this out for webkit and moz
                            (.requestPointerLock)))))
 
-;; Rotates the view with the mouse
-;;(def orbit-controls (js/THREE.OrbitControls. camera (.-domElement renderer)))
-
-
 ;; shows the FPS stats
 (def stats  (let [stats (js/Stats.)]
-              ;;(aset stats ".domElement.style.position" "absolute")
               (set! (->
                      stats
                      .-domElement
@@ -336,11 +219,6 @@
     (.position.set sphere x y z)
     sphere))
 
-;; (def sphere (let [sphere (js/THREE.Mesh. sphere-geometry sphere-material)]
-;;               (.position.set sphere 0 40 0)
-;;               sphere))
-
-
 (def update-controls (fn []
                        ;; updates the view with the mouse
                        ;;(.update orbit-controls)
@@ -368,58 +246,12 @@
                         current-time
                         previous-time)
         dt  (- current-time previous-time)
-        chi 0.5
-        ;; alive-shroom-pool  (remove (fn [shroom] (.-dead? shroom)) shroom-pool)
-        ;; alive-slug-pool    (remove (fn [slug] (.-dead? slug)) slug-pool)
-        ]
+        chi 0.5]
     (render)
     (update-controls)
-    ;; text should not be visible
-    ;;(set! (.-material.opacity game-over-text) 0)
-    ;;(set! (.-material.opacity you-win-text) 0)
-    ;; slug should look for nearest shroom and seek it out
-    ;; are there still slugs and shrooms that are alive?
-    ;; (if (and
-    ;;      (not (empty? alive-shroom-pool))
-    ;;      (not (empty? alive-slug-pool))
-    ;;      )
-    ;;   (do
-    ;;     (doall (map (fn [slug]
-    ;;                   ;; move the slug to the nearest shroom
-    ;;                   (.seek-nearest-shroom slug alive-shroom-pool)
-    ;;                   ;; slug should try to eat
-    ;;                   (.eat slug alive-shroom-pool dt))
-    ;;                 alive-slug-pool
-    ;;                 ))))
     (controls/controls-handler camera)
-    ;; update the position of the shaker box
-    (.update-shaker-box hero)
-    ;; salt the nearest slug
-    ;; (if (aget controls/key-state controls/space-key)
-    ;;   (.salt hero (find-nearest-object hero  slug-pool (first slug-pool)) dt)
-    ;;   (.stop-salting hero))
-    ;; increment the amount of time the hero's texture file has been displayed
-    (if (not (.-salting hero)) ;; if the hero isn't salting, step the frames
-      (.increment-frame-display-time hero dt)
-      (.increment-animation-frame hero))
-    ;; is the shaker box intersecting with the slug?
-    ;; (if (.shaker-box-intersects-slug? hero slug)
-    ;;   (.log js/console "Slug is salted"))
-
     ;; refresh the loop
     (cond
-      ;; (empty? alive-shroom-pool) ;; shrooms are all dead!
-      ;; (do
-      ;;   (set! (.-material.opacity game-over-text) 1)
-      ;;   (js/cancelAnimationFrame request-id)
-      ;;   (set! request-id (request-animation-frame-wrapper game-over nil))
-      ;;   )
-      ;; (empty? alive-slug-pool) ;; slugs are all dead!
-      ;; (do
-      ;;   (set! (.-material.opacity you-win-text) 1)
-      ;;   (js/cancelAnimationFrame request-id)
-      ;;   (set! request-id (request-animation-frame-wrapper game-over nil))
-      ;;   )
       :else
       (set! request-id (request-animation-frame-wrapper
                         initial-loop current-time)))))
@@ -438,8 +270,6 @@
     (if (> game-over-delay max-delay)
       (if (aget controls/key-state controls/space-key)
         (do
-          ;; (set! slug-pool (reset-slug-pool! slug-pool))
-          ;; (set! shroom-pool (reset-shroom-pool! shroom-pool))
           (set! game-over-delay 0)
           (set! (.-mesh.position.x hero) 0)
           (set! (.-mesh.position.y hero) 150)
@@ -452,20 +282,6 @@
             (request-animation-frame-wrapper game-over current-time)))))
 
 
-;; (def floor  (let [floor-geometry (create-plane-geometry 1000 1000 10 10)
-;;                   floor-texture  (create-tiled-texture
-;;                                   "resources/images/checkerboard.jpg" 10 10)
-;;                   floor-material (create-mesh-basic-material
-;;                                   (js-obj
-;;                                    "map" floor-texture
-;;                                    "side" js/THREE.DoubleSide))
-;;                   floor          (js/THREE.Mesh. floor-geometry
-;;                                                  floor-material)]
-;;               (.rotateX floor (/ (- Math.PI) 2))
-;;               ;;(set! (-> floor .-position .-y) -0.5)
-;;               ;;(set! (-> floor .-rotation .-x) (/ Math.PI 2))
-;;               floor))
-
 ;; An interactive sphere for the game
 (deftype Sphere
     [geometry material mesh selected?]
@@ -473,16 +289,6 @@
   ;; specify the new color using hexadecial notation
   (change-color [this color]
     (.material.color.set this color)))
-
-;; defines the sphere's radius for all spheres
-;;(def sphere-radius 30)
-
-;; (def floor
-;;   (let [geometry (js/THREE.PlaneGeometry. 2000 2000 100 100)
-;;         ]
-;;     (mapv #(.log js/console %) (.vertices geometry))
-;;     )
-;;   )
 
 (defn sphere
   "Create a sphere with initial coordinates x,y,z and radius."
@@ -504,19 +310,7 @@
                  (js/THREE.Mesh. skybox-geometry skybox-material))
         light  (js/THREE.HemisphereLight. 0xeeeeff 0x777788 0.75)
         red-sphere (sphere 200 1 1 1000)]
-    ;;(.add scene light)
-    ;;(.add scene floor)
-    ;; (.add scene (.-mesh ground))
-    ;;(.add scene (.-mesh game-over-text))
-    ;;(.add scene (.-mesh you-win-text))
     (.add scene skybox)
-    ;;(.add scene (.-mesh hero))
-    ;; (set! slug-pool (create-slug-pool))
-    ;; (set! shroom-pool (create-shroom-pool))
-    ;; (set! (.-mesh.position.x hero) 0)
-    ;; (set! (.-mesh.position.y hero) 150)
-    ;; (doall (map (fn [slug] (.add scene (.-mesh slug))) slug-pool))
-    ;; (doall (map (fn [shroom] (.add scene (.-mesh shroom))) shroom-pool))
     (.add scene (.-mesh red-sphere))
     (js/THREEx.WindowResize renderer camera)
     (.appendChild container (.-domElement stats))
@@ -525,6 +319,7 @@
     ;; add listeners for key events
     (js/addEventListener "keydown" controls/game-key-down! true)
     (js/addEventListener "keyup"   controls/game-key-up!   true)))
+
 
 ;; (when-not (repl/alive?)
 ;;   (repl/connect "ws://127.0.0.1:9001"))

@@ -1,4 +1,4 @@
-(ns slug-fest.camera
+(ns spacetime.camera
   (:require [three]))
 
 (defn init-camera!
@@ -18,7 +18,7 @@
   (js/THREE.PerspectiveCamera. fov aspect near far))
 
 ;; in repl, must be called like
-;; (slug-fest.camera/change-position! camera [0 0 -50000])
+;; (spacetime.camera/change-position! camera [0 0 -50000])
 ;; outside of namespace
 (defn change-position!
   "Change the position of camera by delta vector [x y z]"

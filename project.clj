@@ -1,4 +1,4 @@
-(defproject slug-fest "0.1.0-SNAPSHOT"
+(defproject spacetime "0.1.0-SNAPSHOT"
   :description "Slug Fest Game for Ludum Dare 32"
   :url "http://slugfest.cagostech.com"
 
@@ -22,8 +22,8 @@
               :builds [{:id "dev"
                         :source-paths ["src"]
                         :compiler {
-                                   :main slug-fest.core
-                                   :output-to "out/slug_fest.js"
+                                   :main spacetime.core
+                                   :output-to "out/spacetime.js"
                                    :output-dir "out"
                                    :optimizations :none
                                    :foreign-libs [{:file "resources/js/three75.js"
@@ -39,7 +39,8 @@
                                                   {:file "resources/js/dat.gui.js"
                                                    :provides ["dat"]}
                                                   {:file "resources/js/PointerLockControls.js"
-                                                   :provides ["pointer-lock-controls"]}
+                                                   :provides ["pointer-lock-controls"]
+                                                   :requires ["three"]}
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
@@ -49,8 +50,8 @@
                        {:id "release"
                         :source-paths ["src"]
                         :compiler {
-                                   :main slug-fest.core
-                                   :output-to "out-adv/slug_fest.min.js"
+                                   :main spacetime.core
+                                   :output-to "out-adv/spacetime.min.js"
                                    :optimizations :advanced
                                    :foreign-libs [{:file "resources/js/three.js"
                                                    :provides ["three"]}

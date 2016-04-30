@@ -1,5 +1,5 @@
-(ns slug-fest.controls.original
-  (:require [slug-fest.camera :refer [change-position!]]))
+(ns spacetime.controls.original
+  (:require [spacetime.camera :refer [change-position!]]))
 
 (def key-state (js-obj)) ; the state of keys
 

@@ -1,4 +1,4 @@
-(ns slug-fest.utilities
+(ns spacetime.utilities
   (:require [three]))
 
 (defn x-max
