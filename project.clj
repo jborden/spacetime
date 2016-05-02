@@ -1,5 +1,5 @@
-(defproject spacetime "0.1.0-SNAPSHOT"
-  :description "Slug Fest Game for Ludum Dare 32"
+(defproject spacetime "0.2.0-SNAPSHOT"
+  :description "ClojureScript WebGL engine"
   :url "http://slugfest.cagostech.com"
 
   :dependencies [[org.clojure/clojure "1.7.0"]
