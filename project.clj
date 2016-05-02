@@ -11,7 +11,7 @@
 
   :node-dependencies [[source-map-support "0.3.2"]]
 
-  :plugins [[lein-cljsbuild "1.1.2"]
+  :plugins [[lein-cljsbuild "1.1.3"]
             [lein-externs "0.1.3"]]
 
   :source-paths ["src" "target/classes"]
