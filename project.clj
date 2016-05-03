@@ -1,6 +1,6 @@
 (defproject spacetime "0.2.0-SNAPSHOT"
   :description "ClojureScript WebGL engine"
-  :url "http://slugfest.cagostech.com"
+  :url "https://github.com/jborden/spacetime"
 
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [com.cemerick/piggieback "0.2.1"]

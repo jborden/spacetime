@@ -17,6 +17,14 @@
   []
   (js/THREE.Scene.))
 
+(defn window-resize!
+  [renderer camera]
+  (js/THREEx.WindowResize renderer camera))
+
+(defn fullscreen!
+  []
+  (.bindKey js/THREEx.FullScreen (js-obj "charCode" (.charCodeAt "m" 0))))
+
 ;; see: https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
 
 (defn pointer-lock-change
