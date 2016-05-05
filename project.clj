@@ -26,25 +26,25 @@
                                    :output-to "out/spacetime.js"
                                    :output-dir "out"
                                    :optimizations :none
-                                   :foreign-libs [{:file "resources/js/three75.js"
-                                                   :provides ["three"]}
-                                                  {:file "resources/js/THREEx.FullScreen.js"
+                                   :foreign-libs [{:file "src/js/three75.js"
+                                                   :provides ["cljsjs.three"]}
+                                                  {:file "src/js/THREEx.FullScreen.js"
                                                    :provides ["fullscreen"]}
-                                                  {:file "resources/js/THREEx.WindowResize.js"
+                                                  {:file "src/js/THREEx.WindowResize.js"
                                                    :provides ["window-resize"]}
-                                                  {:file "resources/js/Detector.js"
+                                                  {:file "src/js/Detector.js"
                                                    :provides ["detector"]}
-                                                  {:file "resources/js/Stats.js"
+                                                  {:file "src/js/Stats.js"
                                                    :provides ["stats"]}
-                                                  {:file "resources/js/dat.gui.js"
+                                                  {:file "src/js/dat.gui.js"
                                                    :provides ["dat"]}
-                                                  {:file "resources/js/PointerLockControls.js"
+                                                  {:file "src/js/PointerLockControls.js"
                                                    :provides ["pointer-lock-controls"]
-                                                   :requires ["three"]}
+                                                   :requires ["cljsjs.three"]}
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
-                                   :externs ["resources/js/externs.js"]
+                                   :externs ["js/externs.js"]
                                    :pretty-print true
                                    :source-map true}}
                        {:id "release"
@@ -53,23 +53,23 @@
                                    :main spacetime.core
                                    :output-to "out-adv/spacetime.min.js"
                                    :optimizations :advanced
-                                   :foreign-libs [{:file "resources/js/three.js"
+                                   :foreign-libs [{:file "js/three.js"
                                                    :provides ["three"]}
-                                                  {:file "resources/js/THREEx.FullScreen.js"
+                                                  {:file "js/THREEx.FullScreen.js"
                                                    :provides ["fullscreen"]}
-                                                  {:file "resources/js/THREEx.WindowResize.js"
+                                                  {:file "js/THREEx.WindowResize.js"
                                                    :provides ["window-resize"]}
-                                                  {:file "resources/js/Detector.js"
+                                                  {:file "js/Detector.js"
                                                    :provides ["detector"]}
-                                                  {:file "resources/js/Stats.js"
+                                                  {:file "js/Stats.js"
                                                    :provides ["stats"]}
-                                                  {:file "resources/js/dat.gui.js"
+                                                  {:file "js/dat.gui.js"
                                                    :provides ["dat"]}
-                                                  {:file "resources/js/PointerLockControls.js"
+                                                  {:file "js/PointerLockControls.js"
                                                    :provides ["pointer-lock-controls"]}
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
-                                   :externs ["resources/js/externs.js"]
+                                   :externs ["js/externs.js"]
                                    :pretty-print false}}]}
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]})

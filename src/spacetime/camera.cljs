@@ -1,5 +1,5 @@
 (ns spacetime.camera
-  (:require [three]))
+  (:require [cljsjs.three]))
 
 (defn init-camera!
   "Given a camera, initiliaze it in scene (Three.Scene object) with optional 

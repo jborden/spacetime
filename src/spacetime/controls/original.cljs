@@ -16,7 +16,7 @@
 (def s-key 83)
 ;; space key
 (def space-key 32)
-
+(def move-factor 1)
 (defn game-key-down!
   "Handle event related to when a user presses down on a key. This modifies 
   key-state"
@@ -44,20 +44,20 @@
   (if (or (aget key-state left-arrow)
           (aget key-state a-key))
     ;;(.move-left hero ground)
-    (change-position! camera [-40 0 0]))
+    (change-position! camera [(* move-factor -1) 0 0]))
   ;; hero move up
   (if (or (aget key-state up-arrow)
           (aget key-state w-key))
     ;;(.move-up hero ground)
-    (change-position! camera [0 0 -40]))
+    (change-position! camera [0 0 (* move-factor -1)]))
   ;; hero move right
   (if (or (aget key-state right-arrow)
           (aget key-state d-key))
     ;;(.move-right hero ground)
-    (change-position! camera [40 0 0]))
+    (change-position! camera [(* move-factor 1) 0 0]))
   ;; hero move down
   (if (or (aget key-state down-arrow)
           (aget key-state s-key))
     ;;(.move-down hero ground)
     (do
-      (change-position! camera [0 0 40]))))
+      (change-position! camera [0 0 (* move-factor 1)]))))

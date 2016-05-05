@@ -1,5 +1,5 @@
 (ns spacetime.utilities
-  (:require [three]))
+  (:require [cljsjs.three]))
 
 (defn x-max
   "Return the x-max that will keep on object on ground given the object and

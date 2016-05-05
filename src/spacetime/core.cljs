@@ -1,5 +1,5 @@
 (ns spacetime.core
-  (:require [three]
+  (:require [cljsjs.three]
             [fullscreen]
             [window-resize]
             [detector]

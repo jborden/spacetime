@@ -1,6 +1,6 @@
 {:foreign-libs
  [{:file "js/three75.js"
-   :provides ["three"]}
+   :provides ["cljsjs.three"]}
   {:file "js/THREEx.FullScreen.js"
    :provides ["fullscreen"]}
   {:file "js/THREEx.WindowResize.js"
@@ -13,5 +13,12 @@
    :provides ["dat"]}
   {:file "js/PointerLockControls.js"
    :provides ["pointer-lock-controls"]
-   :requires ["three"]}  ]
+   :requires ["cljsjs.three"]}
+  {:file "js/MTLLoader.js"
+   :provides ["mtl-loader"]
+   :requires ["cljsjs.three"]}
+  {:file "js/OBJLoader.js"
+   :provides ["obj-loader"]
+   :requires ["cljsjs.three"]}
+  ]
  :externs ["js/externs.js"]}
