@@ -2,11 +2,11 @@
   (:require [cljsjs.three]))
 
 (defn init-camera!
-  "Given a camera, initiliaze it in scene (Three.Scene object) with optional 
+  "Given a camera, initiliaze it in scene (Three.Scene object) with
   [x y z] vector for initial position"
   [camera scene position]
   (.add scene camera)
-  (.position.set camera 0 0 1300)
+  (apply #(.position.set camera %1 %2 %3) position)
   (.lookAt camera (.-position scene))
   camera)
 

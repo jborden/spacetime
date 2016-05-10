@@ -87,6 +87,15 @@
   [camera]
   (js/THREE.PointerLockControls. camera))
 
+(defn translate-controls!
+  "Translate the position of the pointerlock controls where position
+  is an x y z vector"
+  [controls position]
+  (let [object (.getObject controls)]
+    (.translateX object (nth position 0))
+    (.translateY object (nth position 1))
+    (.translateZ object (nth position 2))))
+
 ;; (do
 ;;   ;; requestPointLock can not be called automatically. Must be called from
 ;;   ;; the user's feedback
@@ -315,47 +324,47 @@
   ()
   )
 
-(defn ^:export init []
-  (let [scene (create-scene)
-        camera (init-camera! (create-perspective-camera
-                              45
-                              (/ (.-innerWidth js/window)
-                                 (.-innerHeight js/window))
-                              0.1
-                              20000)
-                             scene
-                             [0 0 1300])
-        renderer (create-renderer)
-        render (render renderer scene camera)
-        container (-> js/document
-                      (.getElementById "ThreeJS"))
-        _ (attach-renderer! renderer container)
-        _ (.addEventListener container "click"
-                             (fn [event]
-                               (-> js/document
-                                   .-body
-                                   ;; we should stub this out for webkit and moz
-                                   (.requestPointerLock))))
-        pointer-lock-controls (pointer-lock-controls camera)
-        _ (.add scene (.getObject pointer-lock-controls))
-        _ (pointer-lock-listener! js/document pointer-lock-controls)
-        skybox (let [skybox-geometry (create-box-geometry 20000 20000 20000)
-                     skybox-material (create-mesh-basic-material
-                                      (js-obj "color" 0x063140
-                                              "side" js/THREE.BackSide))]
-                 (js/THREE.Mesh. skybox-geometry skybox-material))
-        light  (js/THREE.HemisphereLight. 0xeeeeff 0x777788 0.75)
-        red-sphere (sphere 200 1 1 1000)
-        ]
-    ;;(.add scene skybox)
-    (.add scene (.-mesh red-sphere))
-    (js/THREEx.WindowResize renderer camera)
-    ;;(.appendChild container (.-domElement stats))
-    (.bindKey js/THREEx.FullScreen (js-obj "charCode" (.charCodeAt "m" 0)))
-    (start-time-frame-loop (fn [delta-t]
-                             (do (render)
-                                 (controls/controls-handler camera)))
-                           request-id)
-    ;; add listeners for key events
-    (js/addEventListener "keydown" controls/game-key-down! true)
-    (js/addEventListener "keyup"   controls/game-key-up!   true)))
+;; (defn ^:export init []
+;;   (let [scene (create-scene)
+;;         camera (init-camera! (create-perspective-camera
+;;                               75
+;;                               (/ (.-innerWidth js/window)
+;;                                  (.-innerHeight js/window))
+;;                               1
+;;                               1000)
+;;                              scene
+;;                              [0 0 1300])
+;;         renderer (create-renderer)
+;;         render (render renderer scene camera)
+;;         container (-> js/document
+;;                       (.getElementById "ThreeJS"))
+;;         _ (attach-renderer! renderer container)
+;;         _ (.addEventListener container "click"
+;;                              (fn [event]
+;;                                (-> js/document
+;;                                    .-body
+;;                                    ;; we should stub this out for webkit and moz
+;;                                    (.requestPointerLock))))
+;;         pointer-lock-controls (pointer-lock-controls camera)
+;;         _ (.add scene (.getObject pointer-lock-controls))
+;;         _ (pointer-lock-listener! js/document pointer-lock-controls)
+;;         skybox (let [skybox-geometry (create-box-geometry 20000 20000 20000)
+;;                      skybox-material (create-mesh-basic-material
+;;                                       (js-obj "color" 0x063140
+;;                                               "side" js/THREE.BackSide))]
+;;                  (js/THREE.Mesh. skybox-geometry skybox-material))
+;;         light  (js/THREE.HemisphereLight. 0xeeeeff 0x777788 0.75)
+;;         red-sphere (sphere 200 1 1 1000)
+;;         ]
+;;     ;;(.add scene skybox)
+;;     (.add scene (.-mesh red-sphere))
+;;     (js/THREEx.WindowResize renderer camera)
+;;     ;;(.appendChild container (.-domElement stats))
+;;     (.bindKey js/THREEx.FullScreen (js-obj "charCode" (.charCodeAt "m" 0)))
+;;     (start-time-frame-loop (fn [delta-t]
+;;                              (do (render)
+;;                                  (controls/controls-handler camera)))
+;;                            request-id)
+;;     ;; add listeners for key events
+;;     (js/addEventListener "keydown" controls/game-key-down! true)
+;;     (js/addEventListener "keyup"   controls/game-key-up!   true)))

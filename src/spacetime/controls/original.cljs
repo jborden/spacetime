@@ -17,6 +17,8 @@
 ;; space key
 (def space-key 32)
 (def move-factor 1)
+
+
 (defn game-key-down!
   "Handle event related to when a user presses down on a key. This modifies 
   key-state"
@@ -32,7 +34,7 @@
 
 (defn controls-handler
   "Move camera according to player controls"
-  [camera]
+  [left-fn up-fn right-fn down-fn]
   ;; perhaps I can think of something more clever later on, but remember
   ;; cond/condp won't work because you have to account for when two keys
   ;; are held simultaneously!
@@ -44,20 +46,23 @@
   (if (or (aget key-state left-arrow)
           (aget key-state a-key))
     ;;(.move-left hero ground)
-    (change-position! camera [(* move-factor -1) 0 0]))
+    ;;(change-position! camera [(* move-factor -1) 0 0])
+    (left-fn))
   ;; hero move up
   (if (or (aget key-state up-arrow)
           (aget key-state w-key))
     ;;(.move-up hero ground)
-    (change-position! camera [0 0 (* move-factor -1)]))
+    ;;(change-position! camera [0 0 (* move-factor -1)])
+    (up-fn))
   ;; hero move right
   (if (or (aget key-state right-arrow)
           (aget key-state d-key))
     ;;(.move-right hero ground)
-    (change-position! camera [(* move-factor 1) 0 0]))
+    ;;(change-position! camera [(* move-factor 1) 0 0])
+    (right-fn))
   ;; hero move down
   (if (or (aget key-state down-arrow)
           (aget key-state s-key))
     ;;(.move-down hero ground)
-    (do
-      (change-position! camera [0 0 (* move-factor 1)]))))
+    ;;(change-position! camera [0 0 (* move-factor 1)])
+    (down-fn)))
