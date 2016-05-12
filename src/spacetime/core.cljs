@@ -110,7 +110,7 @@
   "Set the position with [x y z] vector"
   [controls position]
   (let [object (.getObject controls)]
-    (.position.set (clj->js position))))
+    (apply  #(.position.set object %1 %2 %3) position)))
 
 ;; (do
 ;;   ;; requestPointLock can not be called automatically. Must be called from
