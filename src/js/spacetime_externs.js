@@ -1,4 +1,4 @@
-var TopLevel = {
+var SpacetimeTopLevel = {
 "add" : function () {},
 "addEventListener" : function () {},
 "appendChild" : function () {},

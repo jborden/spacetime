@@ -44,7 +44,7 @@
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
-                                   :externs ["js/externs.js"]
+                                   :externs ["js/spacetime_externs.js"]
                                    :pretty-print true
                                    :source-map true}}
                        {:id "release"
@@ -70,6 +70,6 @@
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
-                                   :externs ["js/externs.js"]
+                                   :externs ["js/spacetime_externs.js"]
                                    :pretty-print false}}]}
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]})

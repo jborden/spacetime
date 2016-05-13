@@ -31,6 +31,7 @@
   [controls]
   (fn [event]
     (.log js/console "pointer-lock-change")
+    (.log js/console event)
     (set! (.-enabled controls) true)))
 
 (defn pointer-lock-error
@@ -43,14 +44,29 @@
 ;; should also use .exitPointerLock() for when it is disabled.
 ;; should also be shimmed for moz and webkit
 ;; see:
-(defn pointer-lock-listener!
-  "Add a pointer-lock-listener to document"
-  [document controls]
-  (set! (.-enabled controls) false)
-  ;; we should stub this out for moz/webkit *lockchange and *lockerror
-  (.addEventListener document "pointerlockchange" (pointer-lock-change controls) false)
-  (.addEventListener document "webkitpointerlockchange" (pointer-lock-change controls) false)
-  (.addEventListener document "pointerlockerror" pointer-lock-error false))
+(defn pointer-lock-change-listener!
+  "Call on-change when pointerlockchange event occurs. on-change
+  is a fn that accepts the event"
+  [document on-change]
+  ;;(set! (.-enabled controls) false)
+  (.addEventListener document "pointerlockchange"
+                     on-change false)
+  (.addEventListener document "webkitpointerlockchange"
+                     on-change false)
+  (.addEventListener document "mozpointerlockchange"
+                     on-change false))
+
+(defn pointer-lock-error-listener!
+  "Call on-error when pointerlockerror event occurs. on-error
+  is a fn that accepts the event"
+  [document on-error]
+  ;;(set! (.-enabled controls) false)
+  (.addEventListener document "pointerlockerror"
+                     on-error false)
+  (.addEventListener document "webkitpointerlockerror"
+                     on-error false)
+  (.addEventListener document "mozpointerlockerror"
+                     on-error false))
 
 
 ;; global variables

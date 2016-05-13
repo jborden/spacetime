@@ -19,6 +19,5 @@
    :requires ["cljsjs.three"]}
   {:file "js/OBJLoader.js"
    :provides ["obj-loader"]
-   :requires ["cljsjs.three"]}
-  ]
- :externs ["js/externs.js"]}
+   :requires ["cljsjs.three"]}]
+ :externs ["js/spacetime_externs.js"]}
