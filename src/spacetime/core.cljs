@@ -27,18 +27,18 @@
 
 ;; see: https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
 
-(defn pointer-lock-change
-  [controls]
-  (fn [event]
-    (.log js/console "pointer-lock-change")
-    (.log js/console event)
-    (set! (.-enabled controls) true)))
+;; (defn pointer-lock-change
+;;   [controls]
+;;   (fn [event]
+;;     (.log js/console "pointer-lock-change")
+;;     (.log js/console event)
+;;     (set! (.-enabled controls) true)))
 
-(defn pointer-lock-error
-  [controls]
-  (fn [event]
-    (.log js/console "pointer-lock-error")
-    (.log js/console event)))
+;; (defn pointer-lock-error
+;;   [controls]
+;;   (fn [event]
+;;     (.log js/console "pointer-lock-error")
+;;     (.log js/console event)))
 
 ;; this should be as easy as controls/controls-handler
 ;; should also use .exitPointerLock() for when it is disabled.

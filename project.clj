@@ -6,8 +6,7 @@
                  [com.cemerick/piggieback "0.2.1"]
                  [weasel "0.7.0" :exclusions [org.clojure/clojurescript]]
                  [org.clojure/clojurescript "1.7.228"]
-                 ;;[cljsjs/three "0.0.72-0"]
-                 ]
+                 [cljsjs/three "0.0.76-0"]]
 
   :node-dependencies [[source-map-support "0.3.2"]]
 
@@ -26,8 +25,8 @@
                                    :output-to "out/spacetime.js"
                                    :output-dir "out"
                                    :optimizations :none
-                                   :foreign-libs [{:file "src/js/three75.js"
-                                                   :provides ["cljsjs.three"]}
+                                   :foreign-libs [;; {:file "src/js/three75.js"
+                                                  ;;  :provides ["cljsjs.three"]}
                                                   {:file "src/js/THREEx.FullScreen.js"
                                                    :provides ["fullscreen"]}
                                                   {:file "src/js/THREEx.WindowResize.js"
@@ -44,7 +43,7 @@
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
-                                   :externs ["js/spacetime_externs.js"]
+                                   ;;:externs ["common/spacetime.ext.js"]
                                    :pretty-print true
                                    :source-map true}}
                        {:id "release"
@@ -53,8 +52,8 @@
                                    :main spacetime.core
                                    :output-to "out-adv/spacetime.min.js"
                                    :optimizations :advanced
-                                   :foreign-libs [{:file "js/three.js"
-                                                   :provides ["three"]}
+                                   :foreign-libs [;; {:file "js/three.js"
+                                                  ;;  :provides ["three"]}
                                                   {:file "js/THREEx.FullScreen.js"
                                                    :provides ["fullscreen"]}
                                                   {:file "js/THREEx.WindowResize.js"
@@ -70,6 +69,6 @@
                                                   ;; {:file "resources/js/OrbitControls.js"
                                                   ;;  :provides ["orbit-controls"]}
                                                   ]
-                                   :externs ["js/spacetime_externs.js"]
+                                   ;;:externs ["common/spacetime.ext.js"]
                                    :pretty-print false}}]}
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]})
