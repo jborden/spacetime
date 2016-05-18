@@ -118,9 +118,9 @@
   [controls]
   (let [object (.getObject controls)
         position (.-position object)]
-    (vector (.-x position)
-            (.-y position)
-            (.-z position))))
+    {:x (.-x position)
+     :y (.-y position)
+     :z (.-z position)}))
 
 (defn set-position!
   "Set the position with [x y z] vector"
