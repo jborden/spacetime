@@ -22,3 +22,9 @@ http://blog.klipse.tech//clojurescript/2016/04/26/deftype-explained.html?utm_sou
 
 Requiring records in Clojure and ClojureScript
 http://www.danielcompton.net/2016/05/04/requiring-records-clojure-clojurescript?utm_source=dlvr.it&utm_medium=twitter
+
+WebVR Boilerplate
+
+https://github.com/borismus/webvr-boilerplate
+
+http://www.roadtovr.com/google-chrome-webvr-htc-vive-90-fps-hz-chrome/
