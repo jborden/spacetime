@@ -34,7 +34,7 @@
 
 (defn controls-handler
   "Move camera according to player controls"
-  [left-fn up-fn right-fn down-fn & [space-fn]]
+  [{:keys [left-fn up-fn right-fn down-fn space-fn]}]
   ;; perhaps I can think of something more clever later on, but remember
   ;; cond/condp won't work because you have to account for when two keys
   ;; are held simultaneously!
