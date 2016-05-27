@@ -139,6 +139,11 @@
   [[x y z]]
   (js/THREE.Vector3. x y z ))
 
+;; collision detection
+;; http://stackoverflow.com/questions/11473755/how-to-detect-collision-in-three-js
+;; check this next!!!
+
+
 ;; (do
 ;;   ;; requestPointLock can not be called automatically. Must be called from
 ;;   ;; the user's feedback
