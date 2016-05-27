@@ -103,14 +103,20 @@
   [camera]
   (js/THREE.PointerLockControls. camera))
 
+(defn translate-position!
+  "Translate the position of the object where position
+  is an x y z vector"
+  [obj pos]
+  (.translateX obj (nth pos 0))
+  (.translateY obj (nth pos 1))
+  (.translateZ obj (nth pos 2)))
+
 (defn translate-controls!
   "Translate the position of the pointerlock controls where position
   is an x y z vector"
   [controls position]
   (let [object (.getObject controls)]
-    (.translateX object (nth position 0))
-    (.translateY object (nth position 1))
-    (.translateZ object (nth position 2))))
+    (translate-position! object position)))
 
 (defn get-position
   "Return a vector of [x y z] if  object has property 'position' that is
@@ -127,6 +133,11 @@
   [controls position]
   (let [object (.getObject controls)]
     (apply  #(.position.set object %1 %2 %3) position)))
+
+(defn three-vec
+  "Create a THREE/Vector from a 3-element clojure vector coords"
+  [[x y z]]
+  (js/THREE.Vector3. x y z ))
 
 ;; (do
 ;;   ;; requestPointLock can not be called automatically. Must be called from
