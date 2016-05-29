@@ -28,3 +28,11 @@ WebVR Boilerplate
 https://github.com/borismus/webvr-boilerplate
 
 http://www.roadtovr.com/google-chrome-webvr-htc-vive-90-fps-hz-chrome/
+
+Collision detection
+
+http://stackoverflow.com/questions/11473755/how-to-detect-collision-in-three-js
+
+Discussion about WebRTC/Sockets/UDP for games
+
+http://stackoverflow.com/questions/13040752/websockets-udp-and-benchmarks
