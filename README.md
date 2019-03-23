@@ -36,3 +36,8 @@ http://stackoverflow.com/questions/11473755/how-to-detect-collision-in-three-js
 Discussion about WebRTC/Sockets/UDP for games
 
 http://stackoverflow.com/questions/13040752/websockets-udp-and-benchmarks
+
+# Science
+
+Milankovitch cycles to explain climatic variations:
+https://en.wikipedia.org/wiki/Milankovitch_cycles

@@ -1,33 +1,24 @@
-(defproject spacetime "0.2.0-SNAPSHOT"
+(defproject spacetime "0.3.0-SNAPSHOT"
   :description "ClojureScript WebGL engine"
   :url "https://github.com/jborden/spacetime"
 
-  :dependencies [[org.clojure/clojure "1.7.0"]
-                 [com.cemerick/piggieback "0.2.1"]
-                 [weasel "0.7.0" :exclusions [org.clojure/clojurescript]]
-                 [org.clojure/clojurescript "1.7.228"]
-                 [cljsjs/three "0.0.76-0"]]
+  :dependencies [[org.clojure/clojure "1.10.0"]
+                 [org.clojure/clojurescript "1.10.520"]
+                 [cljsjs/three "0.1.01-1"]]
 
-  :node-dependencies [[source-map-support "0.3.2"]]
+  :plugins [[lein-cljsbuild "1.1.7"]]
 
-  :plugins [[lein-cljsbuild "1.1.3"]
-            [lein-externs "0.1.3"]]
-
-  :source-paths ["src" "target/classes"]
+  :source-paths ["src"]
 
   :clean-targets ["out" "out-adv"]
 
-  :cljsbuild {
-              :builds [{:id "dev"
+  :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src"]
-                        :compiler {
-                                   :main spacetime.core
+                        :compiler {:main spacetime.core
                                    :output-to "out/spacetime.js"
                                    :output-dir "out"
                                    :optimizations :none
-                                   :foreign-libs [;; {:file "src/js/three75.js"
-                                                  ;;  :provides ["cljsjs.three"]}
-                                                  {:file "src/js/THREEx.FullScreen.js"
+                                   :foreign-libs [{:file "src/js/THREEx.FullScreen.js"
                                                    :provides ["fullscreen"]}
                                                   {:file "src/js/THREEx.WindowResize.js"
                                                    :provides ["window-resize"]}
@@ -39,11 +30,7 @@
                                                    :provides ["dat"]}
                                                   {:file "src/js/PointerLockControls.js"
                                                    :provides ["pointer-lock-controls"]
-                                                   :requires ["cljsjs.three"]}
-                                                  ;; {:file "resources/js/OrbitControls.js"
-                                                  ;;  :provides ["orbit-controls"]}
-                                                  ]
-                                   ;;:externs ["common/spacetime.ext.js"]
+                                                   :requires ["cljsjs.three"]}]
                                    :pretty-print true
                                    :source-map true}}
                        {:id "release"
@@ -52,9 +39,7 @@
                                    :main spacetime.core
                                    :output-to "out-adv/spacetime.min.js"
                                    :optimizations :advanced
-                                   :foreign-libs [;; {:file "js/three.js"
-                                                  ;;  :provides ["three"]}
-                                                  {:file "js/THREEx.FullScreen.js"
+                                   :foreign-libs [{:file "js/THREEx.FullScreen.js"
                                                    :provides ["fullscreen"]}
                                                   {:file "js/THREEx.WindowResize.js"
                                                    :provides ["window-resize"]}
@@ -65,10 +50,6 @@
                                                   {:file "js/dat.gui.js"
                                                    :provides ["dat"]}
                                                   {:file "js/PointerLockControls.js"
-                                                   :provides ["pointer-lock-controls"]}
-                                                  ;; {:file "resources/js/OrbitControls.js"
-                                                  ;;  :provides ["orbit-controls"]}
-                                                  ]
-                                   ;;:externs ["common/spacetime.ext.js"]
+                                                   :provides ["pointer-lock-controls"]}]
                                    :pretty-print false}}]}
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]})
